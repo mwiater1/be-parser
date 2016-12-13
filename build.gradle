@@ -1,0 +1,25 @@
+group 'com.mateuszwiater.csc444.beparser'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+run {
+    mainClassName = 'com.mateuszwiater.csc444.BeParser'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.antlr:antlr4:4.5.3'
+    compile 'org.antlr:antlr4-runtime:4.5.3'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2.1'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}
