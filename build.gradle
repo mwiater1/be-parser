@@ -2,12 +2,14 @@ group 'com.mateuszwiater.csc444.beparser'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'antlr'
 apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
 run {
-    mainClassName = 'com.mateuszwiater.csc444.BeParser'
+    standardInput = System.in
+    mainClassName = project.group.toString() + '.BeParser'
 }
 
 repositories {
@@ -15,8 +17,12 @@ repositories {
 }
 
 dependencies {
-	compile 'org.antlr:antlr4:4.5.3'
-    compile 'org.antlr:antlr4-runtime:4.5.3'
+	antlr 'org.antlr:antlr4:4.5.3'
+}
+
+generateGrammarSource {
+    print project.group.toString()
+    arguments += ["-package", project.group.toString()]
 }
 
 task wrapper(type: Wrapper) {
